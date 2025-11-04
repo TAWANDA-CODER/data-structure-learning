@@ -1,0 +1,42 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+:root {
+  /* ... other variables ... */
+
+  /** background/text */
+  --ion-background-color: #ffffff; // <-- Change this line
+  --ion-background-color-rgb: 255, 255, 255;
+
+  --ion-text-color: #000000; // <-- You should also change the text color
+  --ion-text-color-rgb: 0, 0, 0;
+
+  /* ... other variables ... */
+}
+
+/*
+ * Dark Mode
+ * -------------------------------------------
+ * Add this block to override the default dark
+ * theme with your light theme colors.
+ */
+@media (prefers-color-scheme: dark) {
+  body {
+    /*
+     * This forces the white background
+     * even when the app is in dark mode.
+     */
+    --ion-background-color: #ffffff;
+    --ion-background-color-rgb: 255, 255, 255;
+
+    --ion-text-color: #000000;
+    --ion-text-color-rgb: 0, 0, 0;
+
+    /*
+     * You may also need to do this for specific
+     * components that have their own dark mode styles.
+     */
+    --ion-item-background: #ffffff;
+    --ion-card-background: #ffffff;
+    --ion-toolbar-background: #ffffff;
+  }
+}

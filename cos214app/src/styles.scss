@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+
+// Define a custom palette based on your purple color
+$your-primary-palette: (
+  50: #e8e0ff,
+  100: #c6b3ff,
+  200: #a185ff,
+  300: #7b56ff,
+  400: #5e35ff,
+  500: #2301A7, // Your main color
+  600: #1f019a,
+  700: #1a018b,
+  800: #15017d,
+  900: #0f0163,
+  contrast: (
+    50: #000,
+    100: #000,
+    200: #000,
+    300: #fff,
+    400: #fff,
+    500: #fff,
+    600: #fff,
+    700: #fff,
+    800: #fff,
+    900: #fff,
+  )
+);
+
+$your-app-primary: mat.define-palette($your-primary-palette, 500);
+$your-app-theme: mat.define-light-theme((
+  color: (
+    primary: $your-app-primary,
+  )
+));
+
+@include mat.all-component-themes($your-app-theme);
+
+@import '@ionic/angular/css/palettes/dark.system.css';
+:root {
+	--ion-background-color: #ffffff;
+	--ion-background-color-rgb: 255,255,255;
+}

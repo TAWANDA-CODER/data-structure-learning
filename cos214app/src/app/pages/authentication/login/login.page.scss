@@ -1,0 +1,117 @@
+/* This new class controls the overall page layout and padding */
+.page-wrapper {
+  width: 100%;
+  max-width: 400px; /* Sets max width for desktop */
+  margin: 0 auto;    /* Centers the container */
+  
+  /* Adds 24px padding on the sides for mobile, and 40px top/bottom */
+  padding: 40px 24px; 
+  
+  /* Ensures all direct children are stacked vertically */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 40px; <-- REMOVED, .page-wrapper now handles padding */
+}
+
+mat-card {
+  width: 100%;
+  /* max-width: 400px; <-- REMOVED, .page-wrapper now handles max-width */
+  box-shadow: none !important;      /* Added: Removes shadow for a flatter look */
+  background: transparent !important; /* Added: Makes card background clear */
+}
+
+.form-title {
+  text-align: center;
+  color: var(--ion-color-primary, #2301a7);
+  font-weight: 600;
+  margin-bottom: 8px; /* Added: A little space */
+}
+
+.form-subtitle {
+  text-align: center;
+  color: #666;
+  margin: 0; /* Added: Resets default margin */
+}
+
+.social-btn-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.social-btn {
+  flex: 1;
+  background-color: #f1f1f1 !important;
+  color: #000 !important;
+  height: 48px; /* Added: Give buttons a consistent height */
+  border-radius: 8px; /* Added: Match input field radius */
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.or-text {
+  text-align: center;
+  color: #a0a0a0;
+  font-weight: 600;
+  margin: 24px 0; /* Updated: Consistent vertical spacing */
+}
+
+/* This new class adds consistent spacing between form elements */
+.form-fields-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* This controls the space between all the inputs/buttons */
+}
+
+.custom-input {
+  width: 100%;
+  /* margin-bottom: 8px; <-- REMOVED, 'gap' in parent now handles spacing */
+}
+
+/* Styles for the Angular Material input */
+.custom-input .mat-mdc-form-field-flex {
+  background-color: #f1f1f1;
+  border-radius: 8px !important;
+}
+
+.custom-input .mdc-notched-outline > * {
+  border-color: transparent !important;
+}
+
+.terms-checkbox {
+  font-size: 0.9rem;
+  /* margin-bottom: 20px; <-- REMOVED, 'gap' in parent now handles spacing */
+}
+
+.main-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  font-weight: 600;
+
+  /* --- ADD THESE TWO LINES --- */
+  background-color: var(--ion-color-primary, #2301a7);
+  color: #ffffff; /* Or your desired text color */
+}
+.bottom-link {
+  text-align: center;
+  margin-top: 24px; /* Updated: Consistent vertical spacing */
+  font-size: 0.9rem; /* Added: Slightly smaller text */
+}
+
+a {
+  color: var(--ion-color-primary, #2301a7);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none; /* Added: Removes default underline */
+}
