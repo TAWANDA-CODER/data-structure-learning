@@ -1,0 +1,7 @@
+{
+  "name": "cos214app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
