@@ -1,0 +1,24 @@
+.custom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* space between icon and label */
+ width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  font-weight: 600;
+
+  /* --- ADD THESE TWO LINES --- */
+  background-color: var(--ion-color-primary, #2301a7);
+  color: #ffffff; /* Or your desired text color */
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-label {
+  display: inline-block; /* ensures label always shows */
+    
+}

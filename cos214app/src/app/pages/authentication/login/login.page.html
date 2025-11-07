@@ -3,53 +3,75 @@
     <div class="form-container">
       <mat-card>
         <mat-card-content>
-          <h1 class="form-title">Sign Up</h1>
-          <p class="form-subtitle">Lets learn design patterns</p>
+          <h1 class="form-title">Welcome Back</h1>
+          <p class="form-subtitle">Let's learn design patterns together</p>
         </mat-card-content>
       </mat-card>
     </div>
 
-    <div class="social-btn-row">
-      <button mat-flat-button class="social-btn">
-        <mat-icon svgIcon="facebook"></mat-icon>
-        Facebook
-      </button>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-fields-wrapper">
+        <div class="form-wrapper">
+          <cos214app-input
+            label="Email"
+            type="email"
+            formControlName="userEmail"
+            [class.ion-invalid]="emailControl?.invalid"
+            [class.ion-touched]="emailControl?.touched"
+          >
+            <ion-note slot="error" *ngIf="emailControl?.errors?.['required']">
+              Email is required.
+            </ion-note>
+            <ion-note slot="error" *ngIf="emailControl?.errors?.['email']">
+              Please enter a valid email address.
+            </ion-note>
+          </cos214app-input>
 
-      <button mat-flat-button class="social-btn">
-        <img src="/assets/google-logo.svg" class="social-icon" />
-        Google
-      </button>
-    </div>
+          <cos214app-input
+            label="Password"
+            type="password"
+            formControlName="userPassword"
+            [class.ion-invalid]="passwordControl?.invalid"
+            [class.ion-touched]="passwordControl?.touched"
+          >
+            <ion-note
+              slot="error"
+              *ngIf="passwordControl?.errors?.['required']"
+            >
+              Password is required.
+            </ion-note>
+            <ion-note
+              slot="error"
+              *ngIf="passwordControl?.errors?.['minLength']"
+            >
+              Password must be at least 8 characters.
+            </ion-note>
+          </cos214app-input>
+        </div>
 
-    <p class="or-text">Or</p>
+        <mat-checkbox class="terms-checkbox" formControlName="termsAccepted">
+          I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a>
+        </mat-checkbox>
 
-    <div class="form-fields-wrapper">
-      <mat-form-field appearance="outline" class="custom-input">
-        <mat-label>Name</mat-label>
-        <input matInput />
-      </mat-form-field>
+        <ion-note
+          *ngIf="termsControl?.invalid && termsControl?.touched"
+          color="danger"
+          class="error-message"
+        >
+          You must accept the terms to continue.
+        </ion-note>
 
-      <mat-form-field appearance="outline" class="custom-input">
-        <mat-label>Email/Phone Number</mat-label>
-        <input matInput type="email" />
-      </mat-form-field>
+        <cos214app-button
+          mat-flat-buttons
+          label="Login"
+          color="primary"
+          fill="solid"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        ></cos214app-button>
+      </div>
+    </form>
 
-      <mat-form-field appearance="outline" class="custom-input">
-        <mat-label>Password</mat-label>
-        <input matInput [type]="hidePassword ? 'password' : 'text'" />
-        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-          </button>
-      </mat-form-field>
-
-      <mat-checkbox class="terms-checkbox">
-        I agree to The <a>Terms of Service</a> and <a>Privacy Policy</a>
-      </mat-checkbox>
-
-      <button mat-flat-button color="primary" class="main-button">
-        Create Account
-      </button>
-    </div>
-
-    <p class="bottom-link">Do you have account? <a>Sign In</a></p>
+    <p class="bottom-link">Don't have an account? <a routerLink="../sign-up">Sign Up</a></p>
   </div>
 </ion-content>

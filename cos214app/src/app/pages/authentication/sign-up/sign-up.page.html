@@ -1,0 +1,83 @@
+<ion-content>
+  <div class="page-wrapper">
+    <div class="form-container">
+      <mat-card>
+        <mat-card-content>
+          <h1 class="form-title">Sign Up</h1>
+          <p class="form-subtitle">Let's learn design patterns together</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <form [formGroup]="signupForm" (ngSubmit)="signup()">
+      <div class="form-fields-wrapper">
+        <cos214app-input
+          label="Name"
+          type="text"
+          formControlName="userName"
+          [class.ion-invalid]="nameControl?.invalid"
+          [class.ion-touched]="nameControl?.touched"
+        >
+          <ion-note slot="error" *ngIf="nameControl?.errors?.['required']">
+            Name is required.
+          </ion-note>
+        </cos214app-input>
+
+        <cos214app-input
+          label="Email"
+          type="email"
+          formControlName="userEmail"
+          [class.ion-invalid]="emailControl?.invalid"
+          [class.ion-touched]="emailControl?.touched"
+        >
+          <ion-note slot="error" *ngIf="emailControl?.errors?.['required']">
+            Email is required.
+          </ion-note>
+          <ion-note slot="error" *ngIf="emailControl?.errors?.['email']">
+            Please enter a valid email address.
+          </ion-note>
+        </cos214app-input>
+
+        <cos214app-input
+          label="Password"
+          type="password"
+          formControlName="userPassword"
+          [class.ion-invalid]="passwordControl?.invalid"
+          [class.ion-touched]="passwordControl?.touched"
+        >
+          <ion-note slot="error" *ngIf="passwordControl?.errors?.['required']">
+            Password is required.
+          </ion-note>
+          <ion-note slot="error" *ngIf="passwordControl?.errors?.['minLength']">
+            Password must be at least 8 characters.
+          </ion-note>
+        </cos214app-input>
+
+        <mat-checkbox class="terms-checkbox" formControlName="termsAccepted">
+          I agree to The <a>Terms of Service</a> and <a>Privacy Policy</a>
+        </mat-checkbox>
+
+        <ion-note
+          *ngIf="termsControl?.invalid && termsControl?.touched"
+          color="danger"
+          class="error-message"
+        >
+          You must accept the terms to continue.
+        </ion-note>
+
+        <cos214app-button
+          mat-flat-buttons
+          label="Sign Up"
+          color="primary"
+          fill="solid"
+          type="submit"
+          [disabled]="signupForm.invalid"
+        ></cos214app-button>
+      </div>
+    </form>
+
+    <p class="bottom-link">
+      Do you have account? <a routerLink="../login">Sign In</a>
+    </p>
+  </div>
+</ion-content>

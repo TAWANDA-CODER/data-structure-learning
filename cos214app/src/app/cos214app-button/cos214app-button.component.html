@@ -1,0 +1,14 @@
+<ion-button
+  [fill]="fill"
+  [disabled]="disabled"
+  class="custom-btn"
+  [type]="type"
+>
+  <!-- Optional icon -->
+  <ng-container *ngIf="iconSrc">
+    <img [src]="iconSrc" class="icon" />
+  </ng-container>
+
+  <!-- Label wrapped in span -->
+  <span class="btn-label">{{ label }}</span>
+</ion-button>
