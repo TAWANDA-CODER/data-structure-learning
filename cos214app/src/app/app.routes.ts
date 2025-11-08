@@ -8,5 +8,9 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/authentication/authentication.routes').then( m => m.routes)
+  },  {
+    path: 'dashboard',
+    loadComponent: () => import('./dashboard/dashboard.page').then( m => m.DashboardPage)
   },
+
 ];

@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="dashboard-content">
+    <!-- Your dashboard content here -->
+    <div [ngSwitch]="activeTab">
+      <div *ngSwitchCase="'home'">
+        <h1>Home Content</h1>
+      </div>
+      <div *ngSwitchCase="'search'">
+        <h1>Search Content</h1>
+      </div>
+      <div *ngSwitchCase="'notifications'">
+        <h1>Notifications Content</h1>
+      </div>
+      <div *ngSwitchCase="'profile'">
+        <h1>Profile Content</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Tab Bar -->
+  <app-floating-tab-bar
+    [tabs]="tabs"
+    [activeTabId]="activeTab"
+    (tabChange)="onTabChange($event)"
+  ></app-floating-tab-bar>
+</ion-content>

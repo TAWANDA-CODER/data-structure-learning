@@ -78,6 +78,6 @@ export class LoginPage implements OnInit {
 
     console.log('Log In data: ', this.loginForm.value);
 
-    
+ 
   }
 }

@@ -1,0 +1,16 @@
+<div class="floating-tab-bar">
+  <div class="tab-bar-container">
+    <button
+      *ngFor="let tab of tabs"
+      class="tab-item"
+      [class.active]="activeTabId === tab.id"
+      (click)="onTabClick(tab.id)"
+    >
+      <div class="tab-icon-wrapper">
+        <ion-icon [name]="tab.icon"></ion-icon>
+        <span *ngIf="tab.badge" class="badge">{{ tab.badge }}</span>
+      </div>
+      <span class="tab-label">{{ tab.label }}</span>
+    </button>
+  </div>
+</div>
