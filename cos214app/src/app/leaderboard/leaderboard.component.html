@@ -1,0 +1,78 @@
+<ion-label class="title"> Top 10 </ion-label>
+
+<ion-segment (ionChange)="segmentChanged($event)" value="first">
+  <ion-segment-button value="first">
+    <ion-label>Today</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="second">
+    <ion-label>Week</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="third">
+    <ion-label>Month</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="fourth">
+    <ion-label>All Time</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<ion-list *ngIf="selectedSegment === 'first'">
+  <ion-item *ngFor="let person of leaderboard; let i = index">
+    <p style="width: 24px; text-align: center; margin-right: 12px">
+      {{ i + 1 }}
+    </p>
+
+    <ion-avatar style="margin-right: 12px">
+      <img [src]="avatarImages[i]" alt="Avatar" />
+    </ion-avatar>
+
+    <ion-label>
+      <h2>{{ person.name }}</h2>
+      <p>Score: {{ person.score }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="selectedSegment === 'second'">
+  <ion-item *ngFor="let person of sortedLeaderboard; let i = index">
+    <p style="width: 24px; text-align: center; margin-right: 12px">
+      {{ i + 1 }}
+    </p>
+    <ion-avatar style="margin-right: 12px">
+      <img [src]="avatarImages[i]" alt="Avatar" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ person.name }}</h2>
+      <p>Score: {{ person.score }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="selectedSegment === 'third'">
+  <ion-item *ngFor="let person of leaderboard; let i = index">
+    <p style="width: 24px; text-align: center; margin-right: 12px">
+      {{ i + 1 }}
+    </p>
+    <ion-avatar style="margin-right: 12px">
+      <img [src]="avatarImages[i]" alt="Avatar" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ person.name }}</h2>
+      <p>Score: {{ person.score }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<ion-list *ngIf="selectedSegment === 'fourth'">
+  <ion-item *ngFor="let person of leaderboard; let i = index">
+    <p style="width: 24px; text-align: center; margin-right: 12px">
+      {{ i + 1 }}
+    </p>
+    <ion-avatar style="margin-right: 12px">
+      <img [src]="avatarImages[i]" alt="Avatar" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ person.name }}</h2>
+      <p>Score: {{ person.score }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>

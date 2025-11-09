@@ -16,6 +16,12 @@ import {
   searchOutline,
   notificationsOutline,
   personOutline,
+  bookOutline,
+  rocketOutline,
+  barChartOutline,
+  libraryOutline,
+  bulbOutline,
+  trendingUpOutline,
 } from 'ionicons/icons';
 @Component({
   selector: 'app-floating-tab-bar',
@@ -27,9 +33,10 @@ import {
 export class FloatingTabBarComponent {
   constructor() {
     addIcons({
-      'home-outline': homeOutline,
-      'search-outline': searchOutline,
-      'notifications-outline': notificationsOutline,
+      'library-outline': libraryOutline,
+      'bar-chart-outline': barChartOutline,
+      'trending-up-outline': trendingUpOutline,
+      'bulb-outline': bulbOutline,
       'person-outline': personOutline,
     });
   }

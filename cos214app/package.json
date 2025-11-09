@@ -27,7 +27,6 @@
     "@capacitor/haptics": "7.0.2",
     "@capacitor/keyboard": "7.0.3",
     "@capacitor/status-bar": "7.0.3",
-    "@ionic/angular": "^8.0.0",
     "add": "^2.0.6",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
@@ -45,7 +44,10 @@
     "@angular/compiler-cli": "^20.0.0",
     "@angular/language-service": "^20.0.0",
     "@capacitor/cli": "7.4.4",
+    "@ionic/angular": "^8.7.9",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@ionic/core": "^8.7.9",
+    "@stencil/core": "^4.38.3",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
@@ -60,7 +62,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.8.0"
+    "typescript": "^5.9.3"
   },
   "description": "An Ionic project"
 }

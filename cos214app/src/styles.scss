@@ -35,7 +35,6 @@ $your-app-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($your-app-theme);
 
-@import '@ionic/angular/css/palettes/dark.system.css';
 :root {
 	--ion-background-color: #ffffff;
 	--ion-background-color-rgb: 255,255,255;
