@@ -1,0 +1,17 @@
+ion-content {
+  h2 {
+    font-weight: 600;
+  }
+  ion-list {
+    margin-top: 10px;
+  }
+
+
+ion-radio {
+  transform: scale(1.2);
+  margin-left: 8px;
+}
+
+ion-item.selected {
+  background-color: #d4edda; // light green for selection
+}}

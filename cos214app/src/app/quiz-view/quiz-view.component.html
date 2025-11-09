@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ quizTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- 🟩 START SCREEN -->
+  <div *ngIf="quizState === 'start'" class="ion-text-center">
+    <h2>Ready to start the quiz?</h2>
+    <p>You’ll answer {{ questions.length }} questions.</p>
+    <ion-button expand="block" (click)="startQuiz()">Start Quiz</ion-button>
+  </div>
+
+  <!-- 🟦 QUIZ IN PROGRESS -->
+  <div *ngIf="quizState === 'in-progress'">
+    <!-- <h2>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</h2>
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+
+    <ion-list>
+      <ion-radio-group
+        [(ngModel)]="questions[currentQuestionIndex].selectedAnswer"
+      >
+        <ion-item
+          *ngFor="
+            let opt of questions[currentQuestionIndex].options;
+            let i = index
+          "
+        >
+          <ion-label>{{ opt }}</ion-label>
+          <ion-radio slot="start" [value]="i"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-button
+        (click)="prevQuestion()"
+        [disabled]="currentQuestionIndex === 0"
+        >Previous</ion-button
+      >
+      <ion-button (click)="nextQuestion()">
+        {{ currentQuestionIndex === questions.length - 1 ? "Finish" : "Next" }}
+      </ion-button>
+    </div> -->
+    <h2>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</h2>
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+
+    <ion-list>
+      <ion-radio-group
+        [(ngModel)]="questions[currentQuestionIndex].selectedAnswer"
+      >
+        <ion-item
+          *ngFor="
+            let opt of questions[currentQuestionIndex].options;
+            let i = index
+          "
+          lines="full"
+          button
+          (click)="questions[currentQuestionIndex].selectedAnswer = i"
+          [class.selected]="
+            questions[currentQuestionIndex].selectedAnswer === i
+          "
+        >
+          <ion-label>{{ opt }}</ion-label>
+          <ion-radio slot="end" [value]="i"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <div class="ion-text-center ion-margin-top">
+      <ion-button
+        (click)="prevQuestion()"
+        [disabled]="currentQuestionIndex === 0"
+        >Previous</ion-button
+      >
+      <ion-button (click)="nextQuestion()">
+        {{ currentQuestionIndex === questions.length - 1 ? "Finish" : "Next" }}
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- 🟨 SUMMARY SCREEN -->
+  <div *ngIf="quizState === 'summary'" class="ion-text-center">
+    <h2>Quiz Completed!</h2>
+    <p>You scored {{ score }} out of {{ questions.length }}</p>
+
+    <ion-list>
+      <ion-item *ngFor="let q of questions; let i = index">
+        <ion-label>
+          <h3>{{ i + 1 }}. {{ q.question }}</h3>
+          <p>Your answer: {{ q.options[q.selectedAnswer!] || "No answer" }}</p>
+          <p
+            [ngStyle]="{
+              color: q.selectedAnswer === q.correctAnswer ? 'green' : 'red'
+            }"
+          >
+            Correct answer: {{ q.options[q.correctAnswer] }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" (click)="restartQuiz()">Try Again</ion-button>
+    <ion-button
+      expand="block"
+      color="success"
+      *ngIf="(score / questions.length) * 100 >= 75"
+      (click)="completedQuiz()"
+    >
+      Complete
+    </ion-button>
+    <p *ngIf="warningMessage" style="color: red; font-weight: bold">
+      {{ warningMessage }}
+    </p>
+
+    <p
+      *ngIf="(score / questions.length) * 100 < 75"
+      class="ion-text-center ion-margin-top"
+    >
+      You need at least 75% to complete this quiz. Try again!
+    </p>
+  </div>
+</ion-content>

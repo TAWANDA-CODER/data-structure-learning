@@ -15,8 +15,9 @@ import { UserService } from 'src/app/services/user.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { IonicModule, } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,7 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule,
     MatFormFieldModule,
     IonicModule,
-    RouterLink
+    RouterLink,
   ],
 })
 // ✅ Implement OnInit
@@ -44,7 +45,7 @@ export class LoginPage implements OnInit {
   loginForm!: FormGroup; // <-- This will hold your form
 
   // Inject the FormBuilder
-  constructor(private fb: FormBuilder) {}
+  constructor(private router: Router, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -74,10 +75,10 @@ export class LoginPage implements OnInit {
       // Mark fields as touched to show errors
       this.loginForm.markAllAsTouched();
       return;
+    } else {
+      this.router.navigate(['../dashboard']);
     }
 
     console.log('Log In data: ', this.loginForm.value);
-
- 
   }
 }

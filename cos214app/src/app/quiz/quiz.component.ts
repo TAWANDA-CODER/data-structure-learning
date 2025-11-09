@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { CardItem } from 'src/utils/Interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cos214app-quiz',
@@ -13,7 +14,11 @@ import { CardItem } from 'src/utils/Interfaces';
 export class QuizComponent implements OnInit {
   @Input() quizCards: CardItem[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  openQuiz(quizId: number) {
+    this.router.navigate(['/quizview', quizId]);
+  }
 
   ngOnInit() {}
 }
