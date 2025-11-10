@@ -3,20 +3,15 @@
 
   <ion-input
     [type]="type === 'password' ? (hidePassword ? 'password' : 'text') : type"
-    [(ngModel)]="value"
+    [value]="value"
     [disabled]="isDisabled"
+    (ionInput)="value = $any($event.target).value"
     (ionBlur)="onTouched()"
   ></ion-input>
 
   <ion-buttons slot="end" *ngIf="type === 'password'">
-    <ion-button
-      fill="clear"
-      (click)="hidePassword = !hidePassword"
-      [disabled]="isDisabled"
-    >
-      <ion-icon
-        [name]="hidePassword ? 'eye-off-outline' : 'eye-outline'"
-      ></ion-icon>
+    <ion-button fill="clear" (click)="togglePassword()" [disabled]="isDisabled">
+      <ion-icon [name]="hidePassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
     </ion-button>
   </ion-buttons>
 </ion-item>

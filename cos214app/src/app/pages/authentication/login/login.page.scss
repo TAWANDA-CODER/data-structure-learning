@@ -11,6 +11,25 @@
   flex-direction: column;
   justify-content: center;
 }
+.password-item {
+  position: relative;
+
+  ion-input {
+    width: 100%;
+    padding-right: 2.5rem;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--ion-color-medium);
+    z-index: 2;
+  }
+}
 
 /* Header section styling */
 .form-container {
@@ -175,5 +194,171 @@ a:hover::after {
   
   .form-subtitle {
     font-size: 14px;
+  }
+}
+
+.custom-input-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --background: #f8fafc;
+  --border-radius: 12px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: #e2e8f0;
+  --min-height: 24px;
+  --inner-padding-end: 8px;
+  
+  margin-bottom: 4px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+
+  // Smooth hover effect
+  &:hover:not(.ion-invalid) {
+    --background: #ffffff;
+    --border-color: #cbd5e1;
+  }
+
+  // Enhanced focus state
+  &.ion-focused {
+    --background: #ffffff;
+    --border-color: var(--ion-color-primary, #2301a7);
+    box-shadow: 0 0 0 3px rgba(35, 1, 167, 0.1);
+  }
+
+  // Refined label styling
+  ion-label {
+    font-weight: 500;
+    color: #64748b;
+    font-size: 14px;
+    transition: all 0.2s ease;
+  }
+
+  // Input text styling
+  ion-input {
+    --padding-start: 0;
+    --padding-top: 4px;
+    font-size: 15px;
+    color: #0f172a;
+    font-weight: 400;
+  }
+
+// Password toggle button styling
+  ion-buttons[slot="end"] { // Be specific to the end slot
+    align-self: center;   // <-- ADD THIS
+    margin: 0;            // <-- Add this to reset default margins
+    margin-right: -4px;   // <-- Keep your existing horizontal adjustment
+  }
+
+  ion-button {
+    --padding-start: 8px;
+    --padding-end: 8px;
+    
+    ion-icon {
+      color: #64748b;
+      font-size: 20px;
+      transition: color 0.2s ease;
+    }
+
+    &:hover:not([disabled]) ion-icon {
+      color: var(--ion-color-primary, #2301a7);
+    }
+  }
+
+  // Disabled state
+  &.item-disabled {
+    --background: #f1f5f9;
+    --border-color: #e2e8f0;
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    ion-label,
+    ion-input {
+      opacity: 0.5;
+    }
+  }
+}
+
+// Error state styling
+:host(.ion-invalid.ion-touched) {
+  .custom-input-item {
+    --background: #fef2f2;
+    --border-color: var(--ion-color-danger, #f1453d);
+    --border-width: 1.5px;
+    
+    // Subtle shake animation on error
+    animation: shake 0.3s ease;
+
+    ion-label {
+      color: var(--ion-color-danger, #f1453d);
+      font-weight: 600;
+    }
+
+    // Keep error border even on focus
+    &.ion-focused {
+      --border-color: var(--ion-color-danger, #f1453d);
+      box-shadow: 0 0 0 3px rgba(241, 69, 61, 0.1);
+    }
+  }
+
+  // Show and style error messages
+  ::ng-deep [slot="error"] {
+    display: block;
+    color: var(--ion-color-danger, #f1453d);
+    font-size: 13px;
+    font-weight: 500;
+    padding-left: 16px;
+    padding-top: 6px;
+    padding-bottom: 2px;
+    line-height: 1.4;
+    animation: slideDown 0.2s ease;
+
+    // Icon before error message (optional enhancement)
+    &::before {
+      content: "⚠ ";
+      margin-right: 4px;
+    }
+  }
+}
+
+// Default: hide error content
+::ng-deep [slot="error"] {
+  display: none;
+}
+
+// Subtle shake animation for errors
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+// Slide down animation for error messages
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Success state (when valid and touched)
+:host(.ion-valid.ion-touched) {
+  .custom-input-item {
+    --border-color: #10b981;
+    
+    ion-label {
+      color: #059669;
+    }
   }
 }

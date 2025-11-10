@@ -1,22 +1,20 @@
-// custom-button.component.ts
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import {Form} from '@angular/forms';
 
 @Component({
   selector: 'cos214app-button',
   templateUrl: './cos214app-button.component.html',
   styleUrls: ['./cos214app-button.component.scss'],
-  standalone: true, // ✅ Make the component standalone
-  imports: [CommonModule, FormsModule, IonicModule],
+  standalone: true,
+  imports: [CommonModule, IonicModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class COS214AppButtonComponent {
-  @Input() label: string = 'Button'; // Text to show
-  @Input() iconSrc: string | null = null; // Optional icon URL
-  @Input() fill: 'solid' | 'outline' | 'clear' = 'solid'; // Ionic fill style
-  @Input() color: string = 'medium'; // Ionic color
-  @Input() disabled: boolean = false; // Optional disabled state
-  @Input() type: string = 'button'; // Default to 'button'
+  @Input() label: string = 'Button';
+  @Input() iconSrc: string | null = null;
+  @Input() fill: 'solid' | 'outline' | 'clear' = 'solid';
+  @Input() color: string = 'primary';
+  @Input() disabled: boolean = false;
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
 }

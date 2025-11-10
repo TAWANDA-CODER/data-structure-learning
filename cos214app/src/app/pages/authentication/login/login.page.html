@@ -10,68 +10,73 @@
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="form-fields-wrapper">
-        <div class="form-wrapper">
-          <cos214app-input
-            label="Email"
-            type="email"
-            formControlName="userEmail"
-            [class.ion-invalid]="emailControl?.invalid"
-            [class.ion-touched]="emailControl?.touched"
-          >
-            <ion-note slot="error" *ngIf="emailControl?.errors?.['required']">
-              Email is required.
-            </ion-note>
-            <ion-note slot="error" *ngIf="emailControl?.errors?.['email']">
-              Please enter a valid email address.
-            </ion-note>
-          </cos214app-input>
-
-          <cos214app-input
-            label="Password"
-            type="password"
-            formControlName="userPassword"
-            [class.ion-invalid]="passwordControl?.invalid"
-            [class.ion-touched]="passwordControl?.touched"
-          >
-            <ion-note
-              slot="error"
-              *ngIf="passwordControl?.errors?.['required']"
-            >
-              Password is required.
-            </ion-note>
-            <ion-note
-              slot="error"
-              *ngIf="passwordControl?.errors?.['minLength']"
-            >
-              Password must be at least 8 characters.
-            </ion-note>
-          </cos214app-input>
-        </div>
-
-        <mat-checkbox class="terms-checkbox" formControlName="termsAccepted">
-          I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a>
-        </mat-checkbox>
-
-        <ion-note
-          *ngIf="termsControl?.invalid && termsControl?.touched"
-          color="danger"
-          class="error-message"
+      <ion-item lines="full" class="custom-input-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input
+          type="email"
+          formControlName="userEmail"
+          (ionBlur)="emailControl?.markAsTouched()"
         >
-          You must accept the terms to continue.
-        </ion-note>
+        </ion-input>
+      </ion-item>
+      <ion-note
+        color="danger"
+        *ngIf="emailControl?.invalid && emailControl?.touched"
+      >
+        <span *ngIf="emailControl?.errors?.['required']"
+          >Email is required.</span
+        >
+        <span *ngIf="emailControl?.errors?.['email']"
+          >Please enter a valid email address.</span
+        >
+      </ion-note>
 
-        <cos214app-button
-          mat-flat-buttons
-          label="Login"
-          color="primary"
-          fill="solid"
-          type="submit"
-          [disabled]="loginForm.invalid"
-        ></cos214app-button>
+      <ion-item lines="full" class="custom-input-item">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="userPassword"
+          (ionBlur)="passwordControl?.markAsTouched()"
+        >
+        </ion-input>
+
+        <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="togglePassword()">
+            <ion-icon
+              [name]="hidePassword ? 'eye-off-outline' : 'eye-outline'"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+      <ion-note
+        color="danger"
+        *ngIf="passwordControl?.invalid && passwordControl?.touched"
+      >
+        <span *ngIf="passwordControl?.errors?.['required']"
+          >Password is required.</span
+        >
+        <span *ngIf="passwordControl?.errors?.['minlength']"
+          >Password must be at least 8 characters.</span
+        >
+      </ion-note>
+
+      <mat-checkbox class="terms-checkbox" formControlName="termsAccepted">
+        I agree to the <a>Terms of Service</a> and <a>Privacy Policy</a>
+      </mat-checkbox>
+      <div
+        *ngIf="termsControl?.invalid && termsControl?.touched"
+        style="color: red; font-size: 0.9em"
+      >
+        You must accept the terms to continue.
       </div>
+
+      <ion-button expand="block" type="submit" [disabled]="loginForm.invalid">
+        Login
+      </ion-button>
     </form>
 
-    <p class="bottom-link">Don't have an account? <a routerLink="../sign-up">Sign Up</a></p>
+    <p class="bottom-link">
+      Don't have an account? <a routerLink="/sign-up">Sign Up</a>
+    </p>
   </div>
 </ion-content>

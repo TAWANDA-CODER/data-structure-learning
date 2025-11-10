@@ -1,24 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, forwardRef } from '@angular/core';
-import {
-  FormsModule,
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR, // Import the necessary form utilities
-} from '@angular/forms';
+import { Component, Input, forwardRef, ChangeDetectionStrategy } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { addIcons } from 'ionicons';
-// 2. Import the specific icons you need
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { eyeOutline, eyeOffOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'cos214app-input',
   templateUrl: './cos214app-input.component.html',
   styleUrls: ['./cos214app-input.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, IonicModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
-      // Register the component as a ControlValueAccessor
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => Cos214appInputComponent),
       multi: true,
@@ -31,6 +26,7 @@ export class Cos214appInputComponent implements ControlValueAccessor {
 
   hidePassword: boolean = true;
   isDisabled: boolean = false;
+  private _value: string = '';
 
   constructor() {
     addIcons({
@@ -39,11 +35,7 @@ export class Cos214appInputComponent implements ControlValueAccessor {
     });
   }
 
-  // This is the internal value of the component
-  private _value: string = '';
-
-  // --- Getter/Setter for the value ---
-  // This wires the template's [(ngModel)] to our accessor methods
+  // Value getter/setter
   get value(): string {
     return this._value;
   }
@@ -51,48 +43,31 @@ export class Cos214appInputComponent implements ControlValueAccessor {
   set value(val: string) {
     if (val !== this._value) {
       this._value = val;
-      this.onChange(this._value); // Notify the parent (ngModel) of the change
-      this.onTouched(); // Mark as touched
+      this.onChange(val);
     }
   }
 
-  // --- Placeholder functions for Angular's form control hooks ---
-  // These will be overridden by registerOnChange and registerOnTouched
-  onChange: (value: any) => void = () => {};
-  onTouched: () => void = () => {};
+  // ControlValueAccessor interface
+  onChange: any = () => {};
+  onTouched: any = () => {};
 
-  // --- Implementation of ControlValueAccessor interface ---
-
-  /**
-   * Called by Angular to write a value *into* your component
-   * (e.g., from the parent's [ngModel]="userEmail")
-   */
   writeValue(obj: any): void {
-    if (obj !== this._value) {
-      this._value = obj;
-    }
+    this._value = obj || '';
   }
 
-  /**
-   * Called by Angular to register a callback function that you
-   * should call whenever the component's value changes.
-   */
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  /**
-   * Called by Angular to register a callback function that you
-   * should call whenever the component is "touched" (blurred).
-   */
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  /**
-   * This function is called when the control's disabled state changes.
-   */
-  setDisabledState?(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
+  }
+
+  togglePassword() {
+    this.hidePassword = !this.hidePassword;
   }
 }
